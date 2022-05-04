@@ -1,0 +1,85 @@
+global:
+  image:
+    # global.image.pullSecrets -- Specifies the image pull secret to define this secret, use your KaaID credentials
+    pullSecrets: []
+  license:
+    # global.license.secretName --  Set a license file and password. Secret needs to have two fields: file and password
+    secretName: ""
+  nats:
+    # global.nats.url -- NATS url
+    url: ""
+  # global.monitoring.enabled -- Monitoring status
+  monitoring:
+    enabled: false
+
+service:
+  type: ClusterIP
+
+# config -- Content for the service config map, automatically mounted as a config file into the pod.
+config: ""
+
+# replicaCount -- The number of service instance replicas to run.
+replicaCount: 1
+
+image:
+  # image.repository -- Docker image repository image URL.
+  repository: dev-hub.kaaiot.net/core/service/{{ .Chart.Name }}/{{ .Chart.Name }}
+  # image.tag -- Docker image tag version to pull and run.
+  tag: ""
+  # image.pullPolicy -- Docker image pull policy.
+  pullPolicy: IfNotPresent
+  # image.pullSecrets -- List of image pull secret names. Each must be defined as a record with the `name` field.
+  pullSecrets: []
+  #   - name: myRegistryKeySecretName
+
+updateStrategy:
+  # updateStrategy.type -- Deployment update srategy
+  type: RollingUpdate
+
+nameOverride: ""
+
+fullnameOverride: ""
+
+# terminationMessagePolicy -- Kubernetes termination message policy.
+terminationMessagePolicy: FallbackToLogsOnError
+
+metadata:
+  partOf: kaa
+  component: backend
+
+annotations:
+  deployment: {}
+  pod: {}
+
+extraPodSpecs:
+  automountServiceAccountToken: false
+
+# env -- Defines [the environment variables](#environment-variables) that Kubernetes passes to the service replica
+env: {}
+  #  JAVA_OPTS:
+  #    value: -Xmx400M
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #     - ALL
+  #   add:
+  #     - NET_BIND_SERVICE
+  # runAsUser: 65534
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+rules: []
+
+# Dependencies
+
+waitContainers:
+  # waitContainers.enabled -- Wait for dependency services.
+  enabled: true
+  # waitContainers.timeout -- Wait timeout for dependency services in seconds.
+  timeout: 300
+
+runbookUrl: ""

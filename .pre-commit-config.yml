@@ -1,0 +1,6 @@
+-   repo: local
+    hooks:
+    -   id: helm-docs
+        name: helm-docs
+        entry: pre-hooks/helm-docs-pre-commit.sh
+        language: script

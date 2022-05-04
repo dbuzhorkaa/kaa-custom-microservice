@@ -1,0 +1,6 @@
+{{- if eq (.Values.global.monitoring.enabled | toString) "true" }}
+{{- include "service-chart.servicemonitor" (list . "kcm.servicemonitor") -}}
+{{- end -}}
+{{- define "kcm.servicemonitor" -}}
+{{- end -}}
+

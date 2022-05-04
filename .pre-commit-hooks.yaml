@@ -1,0 +1,8 @@
+- id: helm-docs
+  args: []
+  description: Uses 'helm-docs' to create documentation from the Helm chart's 'values.yaml' into a corresponding 'README.md' included into 'doc/Deployment/index.md'.
+  entry: pre-hooks/helm-docs-pre-commit.sh
+  files: (Chart|requirements|values)\.yaml$
+  language: script
+  name: Helm Docs
+  require_serial: true

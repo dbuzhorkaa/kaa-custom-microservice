@@ -1,0 +1,24 @@
+<!--
+This is a template file for the README.md.
+Use `helm-docs` to generate (https://github.com/norwoodj/helm-docs).
+
+The autogeneration is performed by the pre-commit hook. To install the hook:
+```
+$ pip install pre-commit # Only do this once on your machine
+```
+
+Then from the repo directory:
+```
+$ pre-commit install
+$ pre-commit install-hooks
+```
+-->
+
+
+{{ template "chart.requirementsSection" . }}
+
+
+{{ template "chart.valuesSection" . }}
+
+The keys with no description are standard Kubernetes values.
+Refer to the [official Kubernetes documentation](https://kubernetes.io/docs/concepts/) for more information on these.

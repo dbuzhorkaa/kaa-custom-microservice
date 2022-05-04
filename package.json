@@ -1,0 +1,30 @@
+{
+  "name": "custom-microservice",
+  "version": "1.0.0",
+  "description": "KaaIoT custom microservice",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:start": "nodemon src/index.ts",
+    "build": "tsc src/index.ts --outDir dist --module commonjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@kaaiot.github.com:dbuzhorkaa/custom-microservice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "avsc": "^5.7.4",
+    "nats": "^2.6.1"
+  }
+}

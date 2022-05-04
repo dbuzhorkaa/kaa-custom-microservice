@@ -1,0 +1,93 @@
+apiVersion: {{ template "service-chart.common.capabilities.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ include "service.fullname" . }}
+  labels:
+  {{- include "service.labels" . | nindent 4 }}
+  {{- with .Values.annotations.deployment }}
+  annotations:
+    {{ toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  selector:
+    matchLabels:
+      {{- include "service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "service.selectorLabels" . | nindent 8 }}
+        service: {{ include "service.name" . }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      {{- with .Values.annotations.pod }}
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+    {{ include "service.imagePullSecrets" . | nindent 6}}
+    {{- with .Values.extraPodSpecs -}}
+      {{ toYaml . | nindent 6 -}}
+    {{- end -}}
+      {{- if .Values.waitContainers.enabled }}
+      initContainers:
+        - name: nats-wait
+          image: alpine:3.9.2
+          command: ["timeout", "-t", "{{ .Values.waitContainers.timeout }}", "sh", "-c", "until timeout -t 1 nc -z $(echo {{ include "service.natsUrl" . }} | sed -nr 's#.*(//)(.*)(\\:)([0-9]+).*#\\2 \\4#p'); do sleep 1; done"]
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ include "service.imageRepository" . }}:{{ include "service.imageTag" . }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          terminationMessagePolicy: {{ .Values.terminationMessagePolicy }}
+          env:
+            - name: NATS_HOST_PORT
+              value: {{ tpl (include "service.natsUrl" .) $ }}
+            - name: KAA_LICENSE_CERT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: {{ include "service.license" . }}
+          {{- with .Values.env }}
+            {{- range $key, $val := . }}
+            - name: {{ $key | upper }}
+              {{- toYaml $val | nindent 14 -}}
+            {{- end }}
+          {{- end }}
+          ports:
+            - name: management
+              containerPort: 8080
+          resources:
+            {{- toYaml .Values.resources | nindent 12 -}}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{ toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: config
+              mountPath: /srv/kcm
+            - name: license
+              mountPath: /run/license
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "service.fullname" . }}-config
+        - name: license
+          secret:
+            secretName: {{ include "service.license" . }}
+            items:
+              - key: file
+                path: license.p12
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
