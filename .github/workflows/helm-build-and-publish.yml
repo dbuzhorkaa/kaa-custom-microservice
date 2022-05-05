@@ -3,10 +3,9 @@ on:
   workflow_run:
     workflows: ["Publish Docker"]
     types: [completed]
-
+    
 jobs:
-  release:
-    name: Build and publish
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
