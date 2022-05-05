@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: azure/setup-helm@v1
-        id: install helm
       - name: Add Helm repos
         run: "helm repo add kaa https://museum.kaaiot.net"
       - name: Run chart-releaser
