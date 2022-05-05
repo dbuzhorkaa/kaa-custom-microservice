@@ -1,8 +1,7 @@
 name: Helm Publish
 on:
   workflow_run:
-    workflows:
-      - "Publish Docker"
+    workflows: ["Publish Docker"]
     types:
       - completed
 
