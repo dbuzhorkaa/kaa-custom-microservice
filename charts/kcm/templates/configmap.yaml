@@ -1,3 +1,0 @@
-{{- include "service-chart.configmap" (list . "kcm.configmap") -}}
-{{- define "kcm.configmap" -}}
-{{- end -}}

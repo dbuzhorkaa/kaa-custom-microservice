@@ -1,0 +1,6 @@
+{{- if eq (.Values.global.monitoring.enabled | toString) "true" }}
+{{- include "service-chart.servicemonitor" (list . "kaa-custom-microservice.servicemonitor") -}}
+{{- end -}}
+{{- define "kaa-custom-microservice.servicemonitor" -}}
+{{- end -}}
+

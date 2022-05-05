@@ -1,7 +1,7 @@
 {{- if eq (.Values.global.monitoring.enabled | toString) "true" }}
-{{- include "service-chart.prometheusrule" (list . "kcm.prometheusrule") -}}
+{{- include "service-chart.prometheusrule" (list . "kaa-custom-microservice.prometheusrule") -}}
 {{- end -}}
-{{- define "kcm.prometheusrule" -}}
+{{- define "kaa-custom-microservice.prometheusrule" -}}
 {{- if gt (len .Values.rules) 0}}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule

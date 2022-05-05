@@ -1,0 +1,6 @@
+dependencies:
+- name: service-chart
+  repository: https://museum.kaaiot.net
+  version: 0.0.31
+digest: sha256:b59c8f51dca7c6572db7b0f922ee8bba25be9549f7fab8c91afb619912951643
+generated: "2022-05-05T20:48:16.324831574+03:00"
