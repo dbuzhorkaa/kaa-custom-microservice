@@ -8,7 +8,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v4
         with:
-          name: ${{ github.event.repository.owner }}/${{ github.event.repository.name }}
+          name: ${{ github.repository_owner }}/${{ github.event.repository.name }}
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
