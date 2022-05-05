@@ -23,7 +23,7 @@ replicaCount: 1
 
 image:
   # image.repository -- Docker image repository image URL.
-  repository: dev-hub.kaaiot.net/core/service/{{ .Chart.Name }}/{{ .Chart.Name }}
+  repository: ghcr.io/{{ .Chart.Annotations.Owner }}/{{ .Chart.Name }}
   # image.tag -- Docker image tag version to pull and run.
   tag: ""
   # image.pullPolicy -- Docker image pull policy.

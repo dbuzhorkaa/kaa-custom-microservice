@@ -1,5 +1,6 @@
 name: Publish Docker
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
