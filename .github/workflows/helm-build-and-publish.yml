@@ -12,11 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Add kaa repo
-        uses: hiberbee/github-action-helm@1.5.0
-        with:
-          helm: repo add kaa https://museum.kaaiot.net
       - name: Publish Helm charts
-        uses: stefanprodan/helm-gh-pages@master
+        uses: stefanprodan/helm-gh-pages@v1.5.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
