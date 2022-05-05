@@ -4,7 +4,8 @@ on:
     workflows: ["Publish Docker"]
     types: [completed]
   pull_request:
-    - main
+    branches:
+      - main
 
 jobs:
   release:
