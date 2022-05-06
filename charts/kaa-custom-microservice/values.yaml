@@ -23,7 +23,7 @@ replicaCount: 1
 
 image:
   # image.repository -- Docker image repository image URL.
-  repository: ghcr.io/{{ .Chart.Annotations.Owner }}/{{ .Chart.Name }}
+  repository: ghcr.io/{{ .Chart.Annotations.owner }}/{{ .Chart.Name }}
   # image.tag -- Docker image tag version to pull and run.
   tag: ""
   # image.pullPolicy -- Docker image pull policy.
