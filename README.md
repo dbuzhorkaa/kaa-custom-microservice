@@ -1,12 +1,60 @@
-# Kaa Custom Microservice (kaa-custom-microservice)
+# Kaa Custom Microservice
 
 This is an example of microservice that can be deployed to hosted environment of the KaaIoT platform.
+
+## Usage
+
+* Clone this repository
+* Delete the `.git` folder
+* Init new repository
+* Replace `dbuzhorkaa` with your account name
+* Change the `charts/kaa-custom-microservice` folder name with the name of your repo
+* Replace `kaa-custom-microservice` with the name of your repo in `charts/` files.
+* Make sure your repository has enabled the Github Pages and sourced to branch `gh-pages`
 
 ## Microservice
 
 The microservice shows how to communicate with [Nats](https://nats.io/) that is used as the main communication bus between the microservices. In this example we watch for telemetry data
 received according to the [13/DSTP](https://github.com/kaaproject/kaa-rfcs/blob/master/0013/README.md#introduction) protocol and parse the message payload
 according to the [EndpointDataSamplesEvent](https://github.com/kaaproject/kaa-rfcs/blob/master/0013/README.md#endpoint-data-sample-transmission-to-receivers) schema.
+
+The microservice is built using Node.js but you can build using any programming language or platform that can be packed to the Docker image.
+
+In order to run it for development install node 16 or [nvm](https://github.com/nvm-sh/nvm).
+
+If you have nvm:
+
+```sh
+nvm install
+```
+
+Next time after opening the new terminal session just run:
+
+```sh
+nvm use
+```
+
+Before running the example make sure you forwards the Nats `pod` traffic to the localhost:
+
+```sh
+kubectl port-forward -n <services-namespace> <nats-pod-name> 4222:4222
+```
+
+To find the pod try next command:
+
+```sh
+kubectl get pods -n <services-namespace> | grep nats
+```
+
+You may find 2 nats pods, use the first one and not prefixed with `rci`.
+
+
+Run in development mode:
+
+```sh
+npm i
+npm start
+```
 
 ## Deployment overview
 

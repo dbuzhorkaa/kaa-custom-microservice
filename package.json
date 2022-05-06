@@ -1,19 +1,16 @@
 {
-  "name": "custom-microservice",
+  "name": "kaa-custom-microservice",
   "version": "1.0.0",
-  "description": "KaaIoT custom microservice",
+  "description": "Example of microservice to extend the KaaIoT platform",
   "main": "index.js",
+  "private": true,
   "directories": {
     "doc": "doc"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:start": "nodemon src/index.ts",
+    "start": "nodemon src/index.ts",
     "build": "tsc src/index.ts --outDir dist --module commonjs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@kaaiot.github.com:dbuzhorkaa/custom-microservice.git"
   },
   "keywords": [],
   "author": "",
