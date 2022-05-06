@@ -1,0 +1,21 @@
+apiVersion: v1
+entries:
+  kaa-custom-microservice:
+  - annotations:
+      owner: dbuzhorkaa
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-05-06T10:08:28.802177284Z"
+    dependencies:
+    - name: service-chart
+      repository: '@kaa'
+      version: 0.0.31
+    description: 'Kaa Platform: Custom microservice example'
+    digest: f5cc4ca90007f2f38589a650d5c4a7460b5aab4cab9f53999faf06714acaa4df
+    home: https://www.kaaiot.com
+    icon: https://github.com/kaaproject/kaa/raw/master/img/kaa_logo_fullsize.png
+    name: kaa-custom-microservice
+    urls:
+    - https://github.com/dbuzhorkaa/kaa-custom-microservice/releases/download/kaa-custom-microservice-1.0.0/kaa-custom-microservice-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-05-06T10:08:28.802278683Z"
