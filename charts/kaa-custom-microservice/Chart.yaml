@@ -8,6 +8,7 @@ icon: https://github.com/kaaproject/kaa/raw/master/img/kaa_logo_fullsize.png
 engine: gotpl
 annotations:
   owner: dbuzhorkaa
+  bump: 1
 dependencies:
 - name: service-chart
   repository: "@kaa"
