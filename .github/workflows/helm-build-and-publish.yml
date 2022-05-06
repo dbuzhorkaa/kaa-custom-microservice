@@ -1,11 +1,4 @@
 name: Helm Publish
-on:
-  workflow_run:
-    workflows: ["Publish Docker"]
-    types: [completed]
-  pull_request:
-    branches:
-      - main
 
 jobs:
   release:

@@ -1,0 +1,5 @@
+global:
+  license:
+    existingSecret: kaa-license-secret-name
+  nats:
+    url: "nats://nats-svc-client:4222"

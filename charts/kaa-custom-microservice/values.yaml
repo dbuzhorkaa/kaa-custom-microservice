@@ -25,7 +25,7 @@ image:
   # image.repository -- Docker image repository image URL.
   repository: ghcr.io/{{ .Chart.Annotations.owner }}/{{ .Chart.Name }}
   # image.tag -- Docker image tag version to pull and run.
-  tag: ""
+  tag: "latest"
   # image.pullPolicy -- Docker image pull policy.
   pullPolicy: IfNotPresent
   # image.pullSecrets -- List of image pull secret names. Each must be defined as a record with the `name` field.

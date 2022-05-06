@@ -64,3 +64,5 @@ jspm_packages/
 .env.local
 
 dist
+
+deploy-values.yml
