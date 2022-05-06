@@ -1,14 +1,14 @@
 apiVersion: v2
 name: kaa-custom-microservice
-version: 1.0.0-SNAPSHOT
-appVersion: "1.0.0-SNAPSHOT"
+version: 1.0.0
+appVersion: "1.0.0"
 description: "Kaa Platform: Custom microservice example"
 home: https://www.kaaiot.com
 icon: https://github.com/kaaproject/kaa/raw/master/img/kaa_logo_fullsize.png
 engine: gotpl
 annotations:
   owner: dbuzhorkaa
-  bump: 1
+  bump: 2
 dependencies:
 - name: service-chart
   repository: "@kaa"
