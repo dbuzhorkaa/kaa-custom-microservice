@@ -17,5 +17,7 @@ jobs:
         run: "helm repo add kaa https://museum.kaaiot.net"
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.0
+        with:
+          charts_dir: .
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
